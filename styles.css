@@ -202,13 +202,13 @@ button:hover {
 
 .qr-card {
   position: fixed;
-  right: clamp(18px, 3vw, 34px);
-  bottom: clamp(18px, 3vw, 34px);
+  right: clamp(14px, 2vw, 24px);
+  bottom: clamp(14px, 2vw, 24px);
   display: grid;
   justify-items: center;
-  gap: 8px;
-  width: 142px;
-  padding: 10px;
+  gap: 6px;
+  width: 96px;
+  padding: 8px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: rgba(255, 250, 239, 0.84);
@@ -217,14 +217,14 @@ button:hover {
 }
 
 .qr-card img {
-  width: 108px;
-  height: 108px;
+  width: 70px;
+  height: 70px;
   border-radius: 6px;
 }
 
 .qr-card a {
   color: var(--accent-dark);
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 850;
   text-decoration: none;
 }
@@ -269,12 +269,12 @@ button:hover {
 
   .qr-card {
     position: static;
-    width: min(100%, 190px);
+    width: 120px;
     margin-top: -2px;
   }
 
   .qr-card img {
-    width: 142px;
-    height: 142px;
+    width: 86px;
+    height: 86px;
   }
 }
