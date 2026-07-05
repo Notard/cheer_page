@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>응원 페이지</title>
+    <meta
+      name="description"
+      content="한 사람만을 위한 따뜻한 응원 페이지입니다."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell" aria-live="polite">
+      <section class="message-stage" aria-label="응원 메시지">
+        <p class="eyebrow">오늘의 응원</p>
+        <h1 id="displayName">민지</h1>
+        <p id="displayMessage" class="support-message">
+          너는 이미 충분히 잘하고 있어. 오늘도 네 편이 여기 있어.
+        </p>
+      </section>
+
+      <section class="editor-panel" aria-label="페이지 내용 바꾸기">
+        <div>
+          <label for="nameInput">이름</label>
+          <input id="nameInput" type="text" maxlength="18" autocomplete="off" />
+        </div>
+
+        <div>
+          <label for="messageInput">응원 문구</label>
+          <textarea id="messageInput" maxlength="120" rows="3"></textarea>
+        </div>
+
+        <button id="copyLinkButton" type="button">공유 주소 복사</button>
+        <p id="copyStatus" class="copy-status" role="status"></p>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
