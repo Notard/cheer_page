@@ -1,13 +1,13 @@
 :root {
   color-scheme: light;
-  --ink: #241f21;
-  --muted: #6f5f5c;
-  --paper: rgba(255, 252, 246, 0.78);
-  --paper-strong: rgba(255, 252, 246, 0.92);
-  --line: rgba(90, 63, 57, 0.18);
-  --accent: #b74252;
-  --accent-dark: #81293c;
-  --focus: #237b88;
+  --ink: #2b2220;
+  --muted: #8b6b61;
+  --paper: rgba(255, 250, 239, 0.9);
+  --paper-strong: rgba(255, 253, 247, 0.96);
+  --line: rgba(122, 86, 71, 0.18);
+  --accent: #bd5962;
+  --accent-dark: #8e3544;
+  --focus: #4f8b83;
   font-family:
     "Pretendard",
     "Apple SD Gothic Neo",
@@ -25,9 +25,10 @@ body {
   margin: 0;
   color: var(--ink);
   background:
-    linear-gradient(110deg, rgba(255, 248, 232, 0.64), rgba(255, 214, 205, 0.26)),
+    radial-gradient(circle at 50% 42%, rgba(255, 253, 244, 0.72), transparent 34%),
+    linear-gradient(180deg, rgba(255, 244, 226, 0.48), rgba(251, 207, 196, 0.3)),
     url("warm-background.png") center / cover no-repeat fixed,
-    #f7ddca;
+    #f8decc;
 }
 
 body::before {
@@ -36,72 +37,115 @@ body::before {
   z-index: -1;
   content: "";
   background:
-    radial-gradient(circle at 26% 18%, rgba(255, 255, 255, 0.42), transparent 26%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(80, 30, 34, 0.1));
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.32), transparent 24%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(121, 62, 58, 0.06));
 }
 
 .page-shell {
   display: grid;
   min-height: 100vh;
-  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
-  align-items: end;
-  gap: 32px;
-  padding: clamp(28px, 5vw, 72px);
+  grid-template-rows: minmax(0, 1fr) auto;
+  justify-items: center;
+  gap: 24px;
+  padding: clamp(24px, 5vw, 60px);
 }
 
 .message-stage {
+  display: grid;
   align-self: center;
-  max-width: 980px;
-  padding-block: 28px;
+  justify-items: center;
+  width: min(100%, 980px);
+  padding-top: 36px;
+  text-align: center;
   text-wrap: balance;
 }
 
 .eyebrow {
-  margin: 0 0 18px;
+  margin: 0 0 16px;
   color: var(--accent-dark);
-  font-size: clamp(16px, 2vw, 20px);
-  font-weight: 800;
+  font-size: clamp(15px, 1.6vw, 19px);
+  font-weight: 850;
 }
 
 h1 {
-  max-width: 11ch;
+  max-width: 12ch;
   margin: 0;
-  font-size: clamp(68px, 15vw, 184px);
-  line-height: 0.94;
+  font-size: clamp(76px, 16vw, 188px);
+  font-weight: 900;
+  line-height: 0.95;
   letter-spacing: 0;
   overflow-wrap: anywhere;
-  text-shadow: 0 18px 48px rgba(77, 36, 34, 0.2);
+  text-shadow:
+    0 16px 36px rgba(103, 52, 49, 0.16),
+    0 2px 0 rgba(255, 255, 255, 0.5);
+}
+
+.letter-card {
+  position: relative;
+  width: min(100%, 760px);
+  margin: clamp(22px, 4vw, 38px) 0 0;
+  padding: clamp(28px, 5vw, 52px);
+  border: 1px solid rgba(150, 104, 82, 0.22);
+  border-radius: 8px;
+  background:
+    linear-gradient(transparent 96%, rgba(181, 126, 99, 0.09) 96%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.74), rgba(255, 244, 226, 0.92)),
+    var(--paper);
+  background-size: 100% 34px, auto, auto;
+  box-shadow:
+    0 28px 80px rgba(113, 63, 57, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+
+.letter-card::before {
+  position: absolute;
+  inset: 14px;
+  pointer-events: none;
+  content: "";
+  border: 1px dashed rgba(184, 118, 93, 0.24);
+  border-radius: 8px;
+}
+
+.flower-sprig {
+  position: absolute;
+  top: -48px;
+  right: clamp(18px, 8vw, 56px);
+  width: clamp(72px, 11vw, 118px);
+  height: auto;
+  filter: drop-shadow(0 14px 16px rgba(98, 61, 51, 0.16));
+  transform: rotate(6deg);
 }
 
 .support-message {
-  max-width: 760px;
-  margin: clamp(22px, 4vw, 42px) 0 0;
-  color: #403230;
-  font-size: clamp(24px, 4vw, 48px);
-  font-weight: 750;
-  line-height: 1.34;
+  position: relative;
+  margin: 0;
+  color: #493532;
+  font-size: clamp(24px, 3.6vw, 42px);
+  font-weight: 760;
+  line-height: 1.42;
   overflow-wrap: anywhere;
-  text-shadow: 0 10px 32px rgba(255, 255, 255, 0.72);
 }
 
 .editor-panel {
   display: grid;
-  gap: 16px;
-  width: 100%;
-  padding: 20px;
+  width: min(100%, 680px);
+  grid-template-columns: minmax(140px, 220px) minmax(220px, 1fr) auto;
+  align-items: end;
+  gap: 14px;
+  padding: 16px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--paper);
-  box-shadow: 0 24px 70px rgba(81, 43, 43, 0.18);
+  background: rgba(255, 250, 239, 0.76);
+  box-shadow: 0 20px 60px rgba(91, 48, 45, 0.14);
   backdrop-filter: blur(16px);
 }
 
 label {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 7px;
   color: var(--muted);
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 850;
 }
 
 input,
@@ -118,27 +162,28 @@ textarea {
   background: var(--paper-strong);
   color: var(--ink);
   outline: none;
-  padding: 13px 14px;
+  padding: 12px 13px;
 }
 
 textarea {
-  min-height: 92px;
+  min-height: 48px;
   resize: vertical;
 }
 
 input:focus,
 textarea:focus {
   border-color: var(--focus);
-  box-shadow: 0 0 0 4px rgba(35, 123, 136, 0.16);
+  box-shadow: 0 0 0 4px rgba(79, 139, 131, 0.16);
 }
 
 button {
-  min-height: 48px;
+  min-height: 46px;
   border: 0;
   background: var(--accent);
   color: #fffdfa;
   cursor: pointer;
   font-weight: 850;
+  white-space: nowrap;
 }
 
 button:hover {
@@ -146,11 +191,13 @@ button:hover {
 }
 
 .copy-status {
-  min-height: 20px;
+  grid-column: 1 / -1;
+  min-height: 18px;
   margin: -4px 0 0;
   color: var(--accent-dark);
   font-size: 13px;
-  font-weight: 750;
+  font-weight: 760;
+  text-align: center;
 }
 
 @media (max-width: 780px) {
@@ -160,22 +207,33 @@ button:hover {
 
   .page-shell {
     min-height: 100svh;
-    grid-template-columns: 1fr;
-    align-items: stretch;
-    gap: 24px;
-    padding: 26px;
+    padding: 24px;
   }
 
   .message-stage {
-    align-self: end;
-    padding-top: 44px;
+    padding-top: 26px;
   }
 
   h1 {
-    font-size: clamp(58px, 22vw, 104px);
+    font-size: clamp(64px, 23vw, 116px);
+  }
+
+  .letter-card {
+    padding: 34px 24px 30px;
+  }
+
+  .flower-sprig {
+    top: -38px;
+    right: 24px;
+    width: 78px;
   }
 
   .support-message {
-    font-size: clamp(23px, 8vw, 36px);
+    font-size: clamp(23px, 7vw, 34px);
+  }
+
+  .editor-panel {
+    grid-template-columns: 1fr;
+    gap: 13px;
   }
 }
