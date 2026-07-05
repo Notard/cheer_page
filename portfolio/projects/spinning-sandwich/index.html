@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>천천히 도는 샌드위치</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --sky: #eadff5;
+      --mint: #cdb9e7;
+      --bread: #f1c987;
+      --toast: #dba966;
+      --lettuce: #7fbf6a;
+      --tomato: #d95b55;
+      --cheese: #f3c84b;
+      --ham: #d78d95;
+      --shadow: rgba(53, 82, 66, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 44%, rgba(255, 255, 255, 0.78) 0 9rem, transparent 16rem),
+        radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.38), transparent 18rem),
+        radial-gradient(circle at 82% 76%, rgba(173, 138, 218, 0.38), transparent 15rem),
+        linear-gradient(135deg, var(--sky), var(--mint));
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .scene {
+      position: relative;
+      width: min(76vmin, 35rem);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      animation: breathe 7s ease-in-out infinite;
+    }
+
+    .scene::after {
+      content: "";
+      position: absolute;
+      bottom: 16%;
+      width: 42%;
+      height: 8%;
+      border-radius: 50%;
+      background: var(--shadow);
+      filter: blur(0.8rem);
+      animation: shadow 18s linear infinite;
+    }
+
+    .sandwich-shell {
+      position: relative;
+      width: 70%;
+      aspect-ratio: 1.15;
+      cursor: pointer;
+      transition: transform 180ms ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .sandwich-shell:hover .sandwich {
+      animation-duration: 13s;
+    }
+
+    .sandwich-shell.bounce {
+      animation: pop 520ms cubic-bezier(0.2, 0.82, 0.28, 1.18);
+    }
+
+    .sandwich {
+      position: absolute;
+      inset: 0;
+      transform-style: preserve-3d;
+      animation: spin 18s linear infinite;
+      filter: drop-shadow(0 1.2rem 1.4rem rgba(59, 80, 66, 0.18));
+    }
+
+    .layer {
+      position: absolute;
+      left: 50%;
+      width: 82%;
+      height: 24%;
+      transform: translateX(-50%) skewX(-11deg);
+      border-radius: 22% 18% 20% 18%;
+    }
+
+    .bread.top {
+      top: 10%;
+      height: 36%;
+      background:
+        radial-gradient(circle at 24% 38%, rgba(126, 78, 33, 0.33) 0 0.16rem, transparent 0.18rem),
+        radial-gradient(circle at 48% 27%, rgba(126, 78, 33, 0.27) 0 0.14rem, transparent 0.16rem),
+        radial-gradient(circle at 69% 43%, rgba(126, 78, 33, 0.25) 0 0.13rem, transparent 0.15rem),
+        linear-gradient(160deg, #f8dca4, var(--bread) 64%, var(--toast));
+      border: 0.22rem solid rgba(165, 104, 48, 0.24);
+      border-bottom-color: rgba(126, 78, 33, 0.18);
+      z-index: 7;
+    }
+
+    .lettuce {
+      top: 41%;
+      height: 17%;
+      width: 88%;
+      background:
+        radial-gradient(ellipse at 16% 72%, #69aa57 0 18%, transparent 19%),
+        radial-gradient(ellipse at 36% 34%, #8ed277 0 22%, transparent 23%),
+        radial-gradient(ellipse at 58% 76%, #6fb65e 0 20%, transparent 21%),
+        radial-gradient(ellipse at 82% 36%, #91d37a 0 20%, transparent 21%),
+        #78bd65;
+      z-index: 6;
+    }
+
+    .tomato {
+      top: 50%;
+      height: 16%;
+      width: 75%;
+      background:
+        radial-gradient(circle at 31% 50%, rgba(255, 238, 179, 0.86) 0 0.17rem, transparent 0.19rem),
+        radial-gradient(circle at 53% 48%, rgba(255, 238, 179, 0.78) 0 0.15rem, transparent 0.17rem),
+        linear-gradient(160deg, #ef716a, var(--tomato));
+      border-radius: 45% 38% 44% 36%;
+      z-index: 5;
+    }
+
+    .cheese {
+      top: 58%;
+      height: 15%;
+      width: 84%;
+      background: linear-gradient(150deg, #ffe27a, var(--cheese));
+      clip-path: polygon(2% 10%, 100% 0, 93% 88%, 60% 76%, 48% 100%, 34% 74%, 6% 90%);
+      border-radius: 0.5rem;
+      z-index: 4;
+    }
+
+    .ham {
+      top: 66%;
+      height: 17%;
+      width: 78%;
+      background: linear-gradient(165deg, #edb1b8, var(--ham));
+      border-radius: 48% 40% 46% 38%;
+      z-index: 3;
+    }
+
+    .bread.bottom {
+      top: 75%;
+      height: 24%;
+      background: linear-gradient(160deg, #f5d192, var(--bread) 62%, var(--toast));
+      border: 0.2rem solid rgba(165, 104, 48, 0.22);
+      z-index: 2;
+    }
+
+    .sandwich::before {
+      content: "";
+      position: absolute;
+      inset: 22% 13% 0;
+      border-radius: 35%;
+      background: linear-gradient(115deg, rgba(255, 255, 255, 0.4), transparent 45%);
+      transform: skewX(-11deg);
+      pointer-events: none;
+      z-index: 9;
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 0.6rem;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow:
+        0 0 0.25rem rgba(255, 255, 255, 1),
+        0 0 1.05rem rgba(255, 255, 255, 0.95),
+        0 0 1.9rem rgba(201, 168, 255, 0.82);
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .sparkle::before,
+    .sparkle::after {
+      content: "";
+      position: absolute;
+      inset: 50% auto auto 50%;
+      background: rgba(255, 255, 255, 0.92);
+      border-radius: 999px;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 0.75rem rgba(255, 255, 255, 0.86);
+    }
+
+    .sparkle::before {
+      width: 0.18rem;
+      height: 1.45rem;
+    }
+
+    .sparkle::after {
+      width: 1.45rem;
+      height: 0.18rem;
+    }
+
+    .sparkle.one {
+      top: 20%;
+      left: 23%;
+    }
+
+    .sparkle.two {
+      right: 22%;
+      bottom: 28%;
+      width: 0.42rem;
+      animation-delay: -3s;
+    }
+
+    .sparkle.three {
+      right: 31%;
+      top: 18%;
+      width: 0.34rem;
+      animation-delay: -5s;
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg) translateY(0);
+      }
+
+      to {
+        transform: rotate(360deg) translateY(0);
+      }
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(1);
+      }
+
+      38% {
+        transform: scale(1.12) translateY(-0.28rem);
+      }
+
+      68% {
+        transform: scale(0.98) translateY(0.08rem);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes breathe {
+      0%,
+      100% {
+        transform: translateY(0) scale(1);
+      }
+
+      50% {
+        transform: translateY(-0.7rem) scale(1.015);
+      }
+    }
+
+    @keyframes shadow {
+      0%,
+      100% {
+        transform: scaleX(1);
+        opacity: 0.78;
+      }
+
+      50% {
+        transform: scaleX(0.72);
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0) scale(0.86);
+        opacity: 0.62;
+      }
+
+      50% {
+        transform: translateY(-1.1rem) scale(1.18);
+        opacity: 1;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scene,
+      .scene::after,
+      .sandwich,
+      .sparkle {
+        animation-duration: 48s;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="scene" aria-label="천천히 회전하는 샌드위치 그림">
+    <div class="sparkle one"></div>
+    <div class="sparkle two"></div>
+    <div class="sparkle three"></div>
+    <div class="sandwich-shell" id="sandwichButton">
+      <div class="sandwich" role="img" aria-label="천천히 빙글빙글 도는 샌드위치">
+        <div class="layer bread top"></div>
+        <div class="layer lettuce"></div>
+        <div class="layer tomato"></div>
+        <div class="layer cheese"></div>
+        <div class="layer ham"></div>
+        <div class="layer bread bottom"></div>
+      </div>
+    </div>
+  </main>
+  <script>
+    const sandwichButton = document.querySelector("#sandwichButton");
+
+    sandwichButton.addEventListener("click", () => {
+      sandwichButton.classList.remove("bounce");
+      void sandwichButton.offsetWidth;
+      sandwichButton.classList.add("bounce");
+    });
+
+    sandwichButton.addEventListener("animationend", () => {
+      sandwichButton.classList.remove("bounce");
+    });
+  </script>
+</body>
+</html>

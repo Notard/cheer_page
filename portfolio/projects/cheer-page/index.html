@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>응원 페이지</title>
+    <meta
+      name="description"
+      content="한 사람만을 위한 따뜻한 응원 페이지입니다."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://notard.github.io/cheer_page/" />
+    <meta property="og:title" content="응원 페이지" />
+    <meta
+      property="og:description"
+      content="오늘도 네 편이 여기 있어. 따뜻한 응원을 전해요."
+    />
+    <meta
+      property="og:image"
+      content="https://notard.github.io/cheer_page/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="응원 페이지" />
+    <meta
+      name="twitter:description"
+      content="오늘도 네 편이 여기 있어. 따뜻한 응원을 전해요."
+    />
+    <meta
+      name="twitter:image"
+      content="https://notard.github.io/cheer_page/og-image.png"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell" aria-live="polite">
+      <section class="message-stage" aria-label="응원 메시지">
+        <p class="eyebrow">오늘 너에게 보내는 마음</p>
+        <h1 id="displayName">민지</h1>
+
+        <article class="letter-card" aria-label="편지 같은 응원 한마디">
+          <img class="flower-sprig" src="flower-sprig.png" alt="" />
+          <p id="displayMessage" class="support-message">
+            너는 이미 충분히 잘하고 있어. 오늘도 네 편이 여기 있어.
+          </p>
+        </article>
+      </section>
+
+      <section class="editor-panel" aria-label="페이지 내용 바꾸기">
+        <div>
+          <label for="nameInput">이름</label>
+          <input id="nameInput" type="text" maxlength="18" autocomplete="off" />
+        </div>
+
+        <div>
+          <label for="messageInput">응원 문구</label>
+          <textarea id="messageInput" maxlength="120" rows="3"></textarea>
+        </div>
+
+        <button id="copyLinkButton" type="button">공유 주소 복사</button>
+        <p id="copyStatus" class="copy-status" role="status"></p>
+      </section>
+
+      <aside class="qr-card" aria-label="QR 코드">
+        <img src="qr-code.png" alt="응원 페이지로 바로 가는 QR 코드" />
+        <a href="qr-code.png" download>QR 코드 저장</a>
+      </aside>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
